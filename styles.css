@@ -53,7 +53,7 @@ button,input {
     background-color:var(--form-backgroung-color);
     border-radius: 0.6rem;
     overflow: hidden;
-    /* display: none; */
+    display: none;
     position: fixed;
     top: 1rem;
     left: 50%;
@@ -169,6 +169,79 @@ button,input {
 #submit-btn:hover, #update-btn:hover{
     -webkit-box-shadow: 0 1px 0 0 #bd5305;
             box-shadow: 0 1px 0 0 #bd5305;
+}
+
+/* #delete-btn{
+    background-color: #d33c41;
+    -webkit-box-shadow: 0 2px 0 0 #8a1f23;
+            box-shadow: 0 2px 0 0 #8a1f23;
+}
+#delete-btn:hover{
+    -webkit-box-shadow: 0 1px 0 0 #8a1f23;
+            box-shadow: 0 1px 0 0 #8a1f23;
+} */
+
+
+.view-lower{
+    padding: 1.5rem;
+    margin: 0 auto;
+    max-width: 1200px;
+    min-width: 700px!important;
+}
+.task-content{
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 0.4rem;
+}
+.task-head{
+    padding-top: 1.5rem;
+    margin-bottom: 2rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+.task-head h2{
+    font-size: 2.3rem;
+}
+.task-head svg{
+    color: var(--orange-color);
+    margin-right: 1rem;
+}
+.task-main-top{
+    padding: 1.5rem 0;
+}
+
+.task-main-top .btn{
+    color: #fff;
+    padding: 0.9rem;
+    border-radius: 3px;
+    -webkit-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+    background-color: var(--orange-color);
+    -webkit-box-shadow: 0 2px 0 0 #f8c8a6;
+            box-shadow: 0 2px 0 0 #f8c8a6;
+}
+
+
+.task-main-top .btn:hover{
+    -webkit-transform: translateY(2px);
+        -ms-transform: translateY(2px);
+            transform: translateY(2px);
+    -webkit-box-shadow: 0 2px 0 0 #f8c8a6;
+            box-shadow: 0 1px 0 0 #f8c8a6;;
+}
+
+.all-task{
+    margin: 1rem 0;
+    min-height: 450px;
 }
 
 /* completed */
