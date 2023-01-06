@@ -1,92 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "./style.css">
-    <!-- font awesome icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
     <title>Task-Manager</title>
-  </head>
+
+
+    <!-- font awesome icons  for line number 24-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+</head>
+
 <body>
-    
-    <!-- form modal -->
-    <div id = "fullscreen-div"></div>
-    <form class = "modal" id = "modal">
-        <div class = "modal-content">
-            <div class = "modal-head">
-                <h3 id = "modal-title">Add Task</h3>
-                <button type="button" id = "close-btn">
-                    <i class = "fas fa-times"></i>
+
+    <!-- form page -->
+    <section id="fullscreen-section"></section>
+    <form class="view-upper">
+        <section class="view-content">
+            <section class="view-head">
+                <h3 id="view-title">Add Task</h3>
+                <button type="button">
+                    <i class="fas fa-times"></i>
                 </button>
-            </div>
-            <div class = "modal-main">
-                <div class = "modal-row">
-                    <div class = "modal-col">
-                        <label for="">TITLE</label>
-                        <input type = "text" placeholder="Title of your note" class = "form-control" name = "addr_ing_name">
-                    </div>
-                </div>
+
+            </section>
 
 
-                <div class = "modal-row grid-row">
-                    <div class = "modal-col">
-                        <label for="">Discription</label>
-                        <textarea type = "text" placeholder="discription of your notes" class = "form-control" name = "street_addr" cols="40" rows="10"></textarea>
-                    </div>
-                </div>
+            <section class="view-main">
+                
+                <section class="view-row">
+                    <section class="view-column">
+                        <label for="title-data">Title:</label>
+                        <input type="text" placeholder="Enter title" class="form-data" id="title-data">
+                    </section>
+                </section>
 
-                <div class = "modal-row">
-                    <div class = "modal-col">
-                        <label for = "">Labels</label>
-                        <select name = "labels">
-                            <option value = "start">start</option>
-                            <option value = "reviwe">in reviwe</option>
-                            <option value = "process">in process</option>
-                            <option value = "done">done</option>
+
+                <section class="view-row">
+                    <section class="view-column">
+                        <label for="description-data">Description:</label>
+                        <textarea name="" placeholder="Enter description" class="form-data" id="description-data"
+                            cols="40" rows="10"></textarea>
+                    </section>
+                </section>
+
+
+                <section class="view-row">
+                    <section class="view-column">
+                        <label for="labels-data">Labels:</label>
+                        <select name="labels" id="labels-data">
+                            <option value="open">Open-phase</option>
+                            <option value="progress">Progress-phase</option>
+                            <option value="review">Review-phase</option>
+                            <option value="done">Done-phase</option>
                         </select>
-                    </div>
-                </div>
+                    </section>
+                </section>
 
-                <div class = "modal-row" id = "modal-btns">
-                    <button type = "submit" id = "save-btn">Save</button>
-                </div>
-            </div>
-        </div>
+
+                <section class="view-row" id="view-btns">
+                    <button type="submit" id="submit-btn">SUBMIT</button>
+                </section>
+
+            </section>
+
+        </section>
     </form>
-    <!-- end of form modal -->
+    <!-- -------------------------------------------------- -->
 
-    <!-- address book home -->
-    <div class = "addr-book" id = "addr-book">
-        <div class = "addr-book-content">
-            <div class = "addr-book-head">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
-                    <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"/>
-                    <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"/>
-                </svg>
-                <h2>Task<span>Manager</span></h2>
-            </div>
+    <!-- four section of taskbook  -->
+    <section class="view-lower">
+        <section class="task-content">
+            <section class="task-head">
+                
+                <!-- scalable vector graphics -->
 
-            <div class = "addr-book-top">
-                <button type = "button" class = "btn" id = "add-btn">
-                    <span><i class = "fas fa-plus"></i>ADD NEW TASK</span>
+                <!-- https://icons.getbootstrap.com/icons/list-stars/ -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list-stars" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
+                    <path d="M2.242 2.194a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.277.277 0 0 0-.094.3l.173.569c.078.256-.213.462-.423.3l-.417-.324a.267.267 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.277.277 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.271.271 0 0 0 .259-.194l.162-.53zm0 4a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.277.277 0 0 0-.094.3l.173.569c.078.255-.213.462-.423.3l-.417-.324a.267.267 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.277.277 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.271.271 0 0 0 .259-.194l.162-.53zm0 4a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.277.277 0 0 0-.094.3l.173.569c.078.255-.213.462-.423.3l-.417-.324a.267.267 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.277.277 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.271.271 0 0 0 .259-.194l.162-.53z"/>
+                  </svg>
+
+                  <h2>Task <span>Manager</span></h2>
+            </section>
+
+
+
+            <section class="task-main-top">
+                <button type="button" class="btn" id="add-btn">
+                    <span>
+                        <i class="fas fa-plus"></i>
+                        ADD NEW TASK
+                    </span>
                 </button>
-            </div>
+            </section>
 
-            <div class = "addr-book-list" id = "addr-book-list">
-               <div class="stages" >
-                <div class="start" id="container"> <h2>  START</h2></div>
-                <div class="process" id="container"> <h2>  IN PROCESS</h2></div>
-                <div class="reviwe" id="container"> <h2>  IN REVIWE</h2></div>
-                <div class="done" id="container"> <h2>  DONE</h2></div>    
-            </div>
-            </div>
-        </div>
-    </div>
-    <!-- end of address book home -->
-    <script src = "app.js"></script>
+            <section class="all-task" id="all-tast">
+                <section class="stages" >
+                    <!-- App should have 4 sections "open", "In Progress", "In Review", "Done" -->
+                    <!-- first -->
+                    <section class="container" id="open-box">Open</section>
+                    <!-- second -->
+                    <section class="container" id="progress-box">In Progress</section>
+                    <!-- third -->
+                    <section class="container" id="review-box">In Review</section>
+                    <!-- fourth -->
+                    <section class="container" id="done-box">Done</section>
+                    
+                </section>
+            </section>
+            
+        </section>
+    </section>
+    <!-- -------------------------------------------------- -->
+    <script src="./App.js"></script>
 </body>
+
 </html>
