@@ -22,7 +22,7 @@
 
     <!-- form page -->
     <section id="fullscreen-section"></section>
-    <form class="view-upper">
+    <form class="view-upper" id="view-upper">
         <section class="view-content">
             <section class="view-head">
                 <h3 id="view-title">Add Task</h3>
@@ -38,7 +38,7 @@
                 <section class="view-row">
                     <section class="view-column">
                         <label for="title-data">Title:</label>
-                        <input type="text" placeholder="Enter title" class="form-data" id="title-data">
+                        <input type="text" placeholder="Enter title" class="form-data" id="title-data" name="addr_ing_name">
                     </section>
                 </section>
 
@@ -46,7 +46,7 @@
                 <section class="view-row grid-row">
                     <section class="view-column">
                         <label for="description-data">Description:</label>
-                        <textarea name="" placeholder="Enter description" class="form-data" id="description-data"
+                        <textarea name="street_addr"  placeholder="Enter description" class="form-data" id="description-data"
                         cols="40" rows="10" style="resize: none;"></textarea>
                     </section>
                 </section>
@@ -56,7 +56,7 @@
                     <section class="view-column">
                         <label for="labels-data">Labels:</label>
                         <select name="labels" id="labels-data">
-                            <option value="open">Open-phase</option>
+                            <option value="start">Open-phase</option>
                             <option value="progress">Progress-phase</option>
                             <option value="review">Review-phase</option>
                             <option value="done">Done-phase</option>
@@ -76,7 +76,7 @@
     <!-- -------------------------------------------------- -->
 
     <!-- four section of taskbook  -->
-    <section class="view-lower">
+    <section class="view-lower" id="view-lower">
         <section class="task-content">
             <section class="task-head">
                 
@@ -106,13 +106,13 @@
                 <section class="stages" >
                     <!-- App should have 4 sections "open", "In Progress", "In Review", "Done" -->
                     <!-- first -->
-                    <section class="container" id="open-box">Open</section>
+                    <section class="container four-section" id="open-box">Open</section>
                     <!-- second -->
-                    <section class="container" id="progress-box">In Progress</section>
+                    <section class="container four-section" id="progress-box">In Progress</section>
                     <!-- third -->
-                    <section class="container" id="review-box">In Review</section>
+                    <section class="container four-section" id="review-box">In Review</section>
                     <!-- fourth -->
-                    <section class="container" id="done-box">Done</section>
+                    <section class="container four-section" id="done-box">Done</section>
                     
                 </section>
             </section>
