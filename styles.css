@@ -66,7 +66,7 @@ button,input {
     border-radius: 0.6rem;
     overflow: hidden;
     /* comment it */
-    /* display: none; */
+    display: none;
     position: fixed;
     top: 1rem;
     left: 50%;
@@ -184,7 +184,7 @@ button,input {
             box-shadow: 0 1px 0 0 #bd5305;
 }
 
-/* #delete-btn{
+#delete-btn{
     background-color: #d33c41;
     -webkit-box-shadow: 0 2px 0 0 #8a1f23;
             box-shadow: 0 2px 0 0 #8a1f23;
@@ -192,7 +192,7 @@ button,input {
 #delete-btn:hover{
     -webkit-box-shadow: 0 1px 0 0 #8a1f23;
             box-shadow: 0 1px 0 0 #8a1f23;
-} */
+}
 
 
 .view-lower{
@@ -267,6 +267,84 @@ button,input {
 
 
 
+.addr-table{
+    margin-top: 2rem;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+.addr-table thead{
+    border-bottom: 1px solid #e3e4f1;
+}
+.addr-table thead tr th{
+    padding-bottom: 0.8rem;
+}
+.addr-table tbody td{
+    padding: 1.5rem 0;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 600;
+}
+.addr-table tbody td:nth-child(1){
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+}
+.addr-table tbody td:nth-child(2){
+    font-weight: 800;
+}
+.addr-table .addressing-name{
+    color: var(--dark-blue);
+}
+.addr-table .address{
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.6);
+}
+.addr-table tbody td:nth-child(3) span{
+    background-color: var(--light-grey-color);
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+}
+.addr-table tbody tr{
+    cursor: pointer;
+}
+.addr-table tbody tr:hover{
+    background-color: var(--orange-color);
+    -webkit-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+.addr-table tbody tr:hover td, .addr-table tbody tr:hover span{
+    color: #fff;
+}
+.addr-table tbody tr:hover td:nth-child(3) span{
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* for error message */
+.errorMsg{
+    border: 1px solid #d33c41!important;
+}
+.note {
+    background-color: #ffdbb1;
+    margin: 2px;
+    border: #000000;
+    border-width: 2px;
+    border-radius: 5px;
+    padding: 3px;
+    width: 13rem;
+    box-shadow: 3px 5px #888888;
+}
+.addressing-name {
+    font-size: larger;
+    font-weight: 500;
+}
+
+
+
+
+
+
 /* //completed part */
 
 .stages{
@@ -325,3 +403,12 @@ background-color: #D3D3D3;
 /* yaha tk */
 
 
+#note-wrapper{
+    display: flex;
+    align-items: center;
+    padding: 0;
+    
+}
+.bi-list-stars{
+    margin-right: 0.4rem;
+}
