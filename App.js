@@ -1,318 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-Manager</title>
 
 
-// regular expression for validation
-const strRegex =  /^[a-zA-Z\s]*$/; // containing only letters
-const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-/* supports following number formats - (123) 456-7890, (123)456-7890, 123-456-7890, 123.456.7890, 1234567890, +31636363634, 075-63546725 */
-const digitRegex = /^\d+$/;
-
-// -------------------------------------------------- //
+    <link rel="stylesheet" href="./styles.css">
 
 
+    <!-- font awesome icons  for line number 24-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+</head>
 
-const countryList = document.getElementById('country-list');
-const fullscreenSection = document.getElementById('fullscreen-section');
-const viewUpper = document.getElementById('view-upper');
-const addBtn = document.getElementById('add-btn');
-const closeBtn = document.getElementById('close-btn');
-const viewBtns = document.getElementById('view-btns');
+<body>
 
-const allTask = document.querySelector('#all-task');
+    <!-- form page -->
+    <section id="fullscreen-section"></section>
+    <form class="view-upper" id="view-upper">
+        <section class="view-content">
+            <section class="view-head">
+                <h3 id="view-title">Add Task</h3>
+                <button type="button" id="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
 
-//.........................................................
+            </section>
+
+
+            <section class="view-main">
+                
+                <section class="view-row">
+                    <section class="view-column">
+                        <label for="title-data">Title:</label>
+                        <input type="text" placeholder="Enter title" class="form-data" id="title-data" name="addr_ing_name">
+                    </section>
+                </section>
+
+
+                <section class="view-row grid-row">
+                    <section class="view-column">
+                        <label for="description-data">Description:</label>
+                        <textarea name="street_addr"  placeholder="Enter description" class="form-data" id="description-data"
+                        cols="40" rows="10" style="resize: none;"></textarea>
+                    </section>
+                </section>
+
+
+                <section class="view-row">
+                    <section class="view-column">
+                        <label for="labels-data">Labels:</label>
+                        <select name="labels" id="labels-data">
+                            <option value="start">Open-phase</option>
+                            <option value="progress">Progress-phase</option>
+                            <option value="review">Review-phase</option>
+                            <option value="done">Done-phase</option>
+                        </select>
+                    </section>
+                </section>
+
+
+                <section class="view-row" id="view-btns">
+                    <button type="submit" id="submit-btn">SUBMIT</button>
+                </section>
+
+            </section>
+
+        </section>
+    </form>
+    <!-- -------------------------------------------------- -->
+
+    <!-- four section of taskbook  -->
+    <section class="view-lower" id="view-lower">
+        <section class="task-content">
+            <section class="task-head">
+                
+                <!-- scalable vector graphics -->
+
+                <!-- https://icons.getbootstrap.com/icons/list-stars/ -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list-stars" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
+                    <path d="M2.242 2.194a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.277.277 0 0 0-.094.3l.173.569c.078.256-.213.462-.423.3l-.417-.324a.267.267 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.277.277 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.271.271 0 0 0 .259-.194l.162-.53zm0 4a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.277.277 0 0 0-.094.3l.173.569c.078.255-.213.462-.423.3l-.417-.324a.267.267 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.277.277 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.271.271 0 0 0 .259-.194l.162-.53zm0 4a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.277.277 0 0 0-.094.3l.173.569c.078.255-.213.462-.423.3l-.417-.324a.267.267 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.277.277 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.271.271 0 0 0 .259-.194l.162-.53z"/>
+                  </svg>
+
+                  <h2>Task <span>Manager</span></h2>
+            </section>
 
 
 
-let addrName = streetAddr = labels = "";
+            <section class="task-main-top">
+                <button type="button" class="btn" id="add-btn">
+                    <span>
+                        <i class="fas fa-plus"></i>
+                        ADD NEW TASK
+                    </span>
+                </button>
+            </section>
 
-// Address class
-class Address{
-    constructor(id, addrName, streetAddr,labels){
-        this.id = id;
-        this.addrName = addrName;
-        this.streetAddr = streetAddr;
-        this.labels = labels;
-    }
-
-    static getAddresses(){
-        let addresses;
-        if(localStorage.getItem('addresses') == null){
-            addresses = [];
-        } else {
-            addresses = JSON.parse(localStorage.getItem('addresses'));
-        }
-        return addresses;
-    }
-
-    static addAddress(address){
-        const addresses = Address.getAddresses();
-        addresses.push(address);
-        localStorage.setItem('addresses', JSON.stringify(addresses));
-    }
-
-    static deleteAddress(id){
-        const addresses = Address.getAddresses();
-        addresses.forEach((address, index) => {
-            if(address.id == id){
-                addresses.splice(index, 1);
-            }
-        });
-        localStorage.setItem('addresses', JSON.stringify(addresses));
-        form.reset();       //viewUpper(pop-up)
-        UI.closeViewUpper();
-        allTask.innerHTML = "";
-        UI.showAddressList();
-    }
-
-    static updateAddress(item){
-        const addresses = Address.getAddresses();
-        addresses.forEach(address => {
-            if(address.id == item.id){
-                address.addrName = item.addrName;
-                address.streetAddr = item.streetAddr;
-                address.labels = item.labels;
-            }
-        });
-        localStorage.setItem('addresses', JSON.stringify(addresses));
-        allTask.innerHTML = "";
-        UI.showAddressList();
-    }
-}
-
-// UI class
-class UI{
-    static showAddressList(){
-        const addresses = Address.getAddresses();
-        addresses.forEach(address => UI.addToAddressList(address));
-        const notes = document.querySelectorAll('.note');
-        const fourSec = document.querySelectorAll('.four-section');
-        let selcon = "start";
-        notes.forEach(ele => {
-                ele.addEventListener('dragstart' , ()=>{
-                    ele.classList.add("drag")
-                })
-                ele.addEventListener('dragend' , ()=>{
-                    location.reload();
-                    ele.classList.remove("drag");
-                    let newadd , newdes;
-                    addresses.forEach(e => {
-                        if(e.id == ele.dataset.id){
-                            newadd = e.addrName;
-                            newdes = e.streetAddr;
-                        }
-                    })
-                     const addressItem = new Address(ele.dataset.id, newadd, newdes , selcon);
-                     Address.updateAddress(addressItem);
+            <section class="all-task" id="all-task">
+                <section class="stages" >
+                    <!-- App should have 4 sections "open", "In Progress", "In Review", "Done" -->
+                    <!-- first -->
+                    <section class="container four-section" id="open-box">Open</section>
+                    <!-- second -->
+                    <section class="container four-section" id="progress-box">In Progress</section>
+                    <!-- third -->
+                    <section class="container four-section" id="review-box">In Review</section>
+                    <!-- fourth -->
+                    <section class="container four-section" id="done-box">Done</section>
                     
-                })
-                fourSec.forEach(ele => {
-                    ele.addEventListener('dragover' , () => {
-                        const tarCon = document.querySelector('.drag');
-                        ele.appendChild(tarCon);
-                        selcon = ele.className;
-                    })
-            })
-        })
-    }
+                </section>
+            </section>
 
-    static addToAddressList(address){
-        const tableRow = document.createElement('section');
-        tableRow.setAttribute('data-id', address.id);
-        tableRow.innerHTML = `
-        <section id="note-wrapper">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
-            <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-        </svg>
-        <section class="note" id="note" data-id=${address.id} draggable="true" > 
-        <p><span class = "addressing-name">${address.addrName}</span></p>
-       </section>
-       </section>
-        `;
-        if(address.labels === "start"){
-            document.querySelector('#open-box').appendChild(tableRow);
-        }else if(address.labels === "progress"){
-            document.querySelector('#progress-box').appendChild(tableRow);
-        }else if(address.labels === "review"){
-            document.querySelector('#review-box').appendChild(tableRow);
-        }else{
-            document.querySelector('.done').appendChild(tableRow);
-        }
-      
+        </section>
+    </section>
+    <!-- -------------------------------------------------- -->
+    <script src="./App.js"></script>
+</body>
 
-    }
-
-    static showViewUpperData(id){
-        const addresses = Address.getAddresses();
-        addresses.forEach(address => {
-            if(address.id == id){
-                form.addr_ing_name.value = address.addrName;
-                form.street_addr.value = address.streetAddr;
-                form.labels.value = address.labels;
-                document.getElementById('view-title').innerHTML = "Change Address Details";
-
-                document.getElementById('view-btns').innerHTML = `
-                    <button type = "submit" id = "update-btn" data-id = "${id}">Update </button>
-                    <button type = "button" id = "delete-btn" data-id = "${id}">Delete </button>
-                `;
-            }
-        });
-    }
-
-    static showViewUpper(){
-        viewUpper.style.display = "block";
-        fullscreenSection.style.display = "block";
-    }
-
-    static closeViewUpper(){
-        viewUpper.style.display = "none";
-        fullscreenSection.style.display = "none";
-    }
-
-
-
-}
-
-
-// DOM Content Loaded
-window.addEventListener('DOMContentLoaded', () => {
-    loadJSON(); // loading country list from json file
-    eventListeners();
-    UI.showAddressList();
-});
-
-// event listeners
-function eventListeners(){
-    // show add item modal
-    addBtn.addEventListener('click', () => {
-        viewUpper.reset();
-        document.getElementById('view-title').innerHTML = "Add Address";
-        UI.showViewUpper();
-        document.getElementById('view-btns').innerHTML = `
-            <button type = "submit" id = "submit-btn"> Submit it! </button>
-        `;
-    });
-
-    // close add item viewUpper
-    closeBtn.addEventListener('click', UI.closeViewUpper);
-
-    // add an address item
-    viewBtns.addEventListener('click', (event) => {
-        event.preventDefault();
-        if(event.target.id == "save-btn"){
-            let isFormValid = getViewUpperData();
-            if(!isFormValid){
-                form.querySelectorAll('input').forEach(input => {
-                    setTimeout(() => {
-                        input.classList.remove('errorMsg');
-                    }, 1500);
-                });
-            } else {
-                let allItem = Address.getAddresses();
-                let lastItemId = (allItem.length > 0) ? allItem[allItem.length - 1].id : 0;
-                lastItemId++;
-
-                const addressItem = new Address(lastItemId, addrName, streetAddr,labels);
-                Address.addAddress(addressItem);
-                UI.closeViewUpper();
-                UI.addToAddressList(addressItem);
-                viewUpper.reset();
-            }
-        }
-    });
-
-    // table row items
-    allTask.addEventListener('click', (event) => {
-        UI.showViewUpper();
-        let trElement;
-        if(event.target.parentElement.tagName == "P"){
-            trElement = event.target.parentElement.parentElement;
-        }
-
-        if(event.target.parentElement.tagName == "SECTION"){
-            trElement = event.target.parentElement;
-        }
-        let viewID = trElement.dataset.id;
-        UI.showViewUpperData(viewID);
-    });
-
-    // delete an address item
-    viewBtns.addEventListener('click', (event) => {
-        if(event.target.id == 'delete-btn'){
-            Address.deleteAddress(event.target.dataset.id);
-        }
-    });
-
-    // update an address item
-    viewBtns.addEventListener('click', (event) => {
-        event.preventDefault();
-        location.reload();
-        if(event.target.id == "update-btn"){
-            let id = event.target.dataset.id;
-            let isFormValid =getViewUpperData ();
-            if(!isFormValid){
-                form.querySelectorAll('input').forEach(input => {
-                    setTimeout(() => {
-                        input.classList.remove('errorMsg');
-                    }, 1500);
-                });
-            } else {
-                const addressItem = new Address(id, addrName, streetAddr, labels);
-                Address.updateAddress(addressItem);
-                UI.closeViewUpper();
-                viewUpper.reset();
-            }
-        }
-        
-    });
-}
-
-
-//below completed
-
-// load countries list
-function loadJSON(){
-    fetch('countries.json')
-    .then(response => response.json())
-    .then(data => {
-        let html = "";
-        data.forEach(country => {
-            html += `
-                <option> ${country.country} </option>
-            `;
-        });
-    })
-}
-
-// get viewUpper data
-function getViewUpperData(){
-    let inputValidStatus = [];
-  
-
-    if(!strRegex.test(viewUpper.addr_ing_name.value) || viewUpper.addr_ing_name.value.trim().length == 0){
-        addErrMsg(viewUpper.addr_ing_name);
-        inputValidStatus[0] = false;
-    } else {
-        addrName = viewUpper.addr_ing_name.value;
-        inputValidStatus[0] = true;
-    }
-
-   
-
-    if(!(viewUpper.street_addr.value.trim().length > 0)){
-        addErrMsg(viewUpper.street_addr);
-        inputValidStatus[1] = false;
-    } else {
-        streetAddr = viewUpper.street_addr.value;
-        inputValidStatus[1] = true;
-    }
-
-  
-    labels = viewUpper.labels.value;
-    return inputValidStatus.includes(false) ? false : true;
-}
-
-
-function addErrMsg(inputBox){
-    inputBox.classList.add('errorMsg');
-}
+</html>
