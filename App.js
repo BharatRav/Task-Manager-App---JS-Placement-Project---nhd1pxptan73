@@ -129,7 +129,7 @@ class UI{
        </section>
        </section>
         `;
-        if(address.labels === "open"){
+        if(address.labels === "start"){
             document.querySelector('#open-box').appendChild(tableRow);
         }else if(address.labels === "progress"){
             document.querySelector('#progress-box').appendChild(tableRow);
@@ -237,14 +237,14 @@ function eventListeners(){
     });
 
     // delete an address item
-    modalBtns.addEventListener('click', (event) => {
+    viewBtns.addEventListener('click', (event) => {
         if(event.target.id == 'delete-btn'){
             Address.deleteAddress(event.target.dataset.id);
         }
     });
 
     // update an address item
-    modalBtns.addEventListener('click', (event) => {
+    viewBtns.addEventListener('click', (event) => {
         event.preventDefault();
         location.reload();
         if(event.target.id == "update-btn"){
@@ -285,9 +285,9 @@ function loadJSON(){
 }
 
 // get viewUpper data
-function getFormData(){
+function getViewUpperData(){
     let inputValidStatus = [];
-    // console.log(form.addr_ing_name.value, form.first_name.value, form.last_name.value, form.email.value, form.phone.value, form.street_addr.value, form.postal_code.value, form.city.value, form.country.value, form.labels.value);
+  
 
     if(!strRegex.test(viewUpper.addr_ing_name.value) || viewUpper.addr_ing_name.value.trim().length == 0){
         addErrMsg(viewUpper.addr_ing_name);
@@ -316,4 +316,3 @@ function getFormData(){
 function addErrMsg(inputBox){
     inputBox.classList.add('errorMsg');
 }
-
