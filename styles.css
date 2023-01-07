@@ -24,6 +24,18 @@ body {
     min-height: 100vh;
 }
 
+/* body :not(.view-content) {
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);    
+
+    /* ye kaam nhi kr rha sir se puchna h
+    https://stackoverflow.com/questions/29642055/popup-with-blurred-background-in-css3-and-html 
+}  */
+    
+
 h2 , h3 {
     color: var(--headings-color);
 }
@@ -40,7 +52,7 @@ button,input {
 /* view-upper */
 #fullscreen-section{
     position:fixed;
-    display: none;
+    display:none;
     top: 0;
     left: 0;
     width: 100%;
@@ -53,7 +65,8 @@ button,input {
     background-color:var(--form-backgroung-color);
     border-radius: 0.6rem;
     overflow: hidden;
-    display: none;
+    /* comment it */
+    /* display: none; */
     position: fixed;
     top: 1rem;
     left: 50%;
@@ -142,7 +155,7 @@ button,input {
 }
 
 .form-data{
-    border: 0.5px solid rgba(184, 183, 188, 0.5);
+    border: 0.2px solid rgba(184, 183, 188, 0.5);
     border-radius: 0.4rem;
     font-size: 0.8rem;
 }
@@ -244,25 +257,39 @@ button,input {
     min-height: 450px;
 }
 
+
 /* completed */
+
+
+
+
+
+
+
 
 /* //completed part */
 
 .stages{
     display: flex;
     flex-direction:row;
-    align-content: space-between;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
 }
 
 .drag{
     opacity: 0.5;
 }
+
+body::-webkit-scrollbar-track{
+    /* ask by mentor */
+    background-color: transparent;
+}
 .container {
     /* background-color:var(--background-color); */
     padding: 4px;
     min-height: 20rem;
-    min-width: 16rem;
+    min-width: 15rem;
     margin: 1%;
     display: flex;
     flex-direction: column;
@@ -294,5 +321,7 @@ background-color: #D3D3D3;
 .drag{
     opacity: 0.5;
 }
+
+/* yaha tk */
 
 
