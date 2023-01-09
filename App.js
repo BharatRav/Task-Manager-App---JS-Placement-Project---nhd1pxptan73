@@ -168,7 +168,7 @@ class UI{
 
 // DOM Content Loaded
 window.addEventListener('DOMContentLoaded', () => {
-    loadJSON(); // loading task list from json file
+    //loadJSON(); // loading task list from json file       171 262
     eventListeners();
     UI.showTaskList();
 });
@@ -258,18 +258,18 @@ function eventListeners(){
 
 
 // load Json Task list
-function loadJSON(){
-    fetch('countries.json')
-    .then(response => response.json())
-    .then(data => {
-        let html = "";
-        data.forEach(country => {
-            html += `
-                <option> ${country.country} </option>
-            `;
-        });
-    })
-}
+// function loadJSON(){
+//     fetch('countries.json')
+//     .then(response => response.json())
+//     .then(data => {
+//         let html = "";
+//         data.forEach(country => {
+//             html += `
+//                 <option> ${country.country} </option>
+//             `;
+//         });
+//     })
+// }
 
 // get form data
 function getFormData(){
