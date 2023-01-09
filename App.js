@@ -16,13 +16,15 @@ const closeBtn = document.getElementById('close-btn');
 const viewBtns = document.getElementById('view-btns');
 const form = document.getElementById('view-upper');
 const alltask = document.querySelector('#all-task');
+// const taskBookList =document.querySelector("#all-task")
 
 // -------------------------------------------------- //
-let taskName = taskDescription = labels = null;
 
+let  taskName = taskDescription = labels = null;
 // localStorage.clear();// temporary for checking
 // Task class
 class Task{
+    
     constructor(id, taskName, taskDescription,labels){
         this.id = id;
         this.taskName = taskName;
@@ -41,7 +43,9 @@ class Task{
     }
 
     static addTask(task){
+        console.log(task)
         const tasks = Task.getTasks();
+        console.log(tasks);
         tasks.push(task);
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
@@ -51,12 +55,13 @@ class Task{
         tasks.forEach((task, index) => {
             if(task.id == id){
                 tasks.splice(index, 1);
+                
             }
         });
         localStorage.setItem('tasks', JSON.stringify(tasks));
         form.reset();
         UI.closeviewUpper();
-        taskBookList.innerHTML = "";
+        taskBookList.innerHTML = "";    //to be change taskbooklist
         UI.showTaskList();
     }
 
@@ -113,6 +118,9 @@ class UI{
     }
 
     static addToTaskList(task){
+        // console.log(task)
+        // let data=localStorage.getItem("tasks");
+        // console.log(data);
         const tableRow = document.createElement('section');
         tableRow.setAttribute('data-id', task.id);
         tableRow.innerHTML = `
@@ -142,6 +150,7 @@ class UI{
     static showViewUpperData(id){
         const tasks = Task.getTasks();
         tasks.forEach(task => {
+            // console.log(task)
             if(task.id == id){
                 form.task_name.value = task.taskName;       //title view upper
                 form.task_description.value = task.taskDescription;
@@ -192,6 +201,7 @@ function eventListeners(){
     // add a description item
     viewBtns.addEventListener('click', (event) => {
         event.preventDefault();
+        // console.log(event.target)
         if(event.target.id == "submit-btn"){
             let isFormValid = getFormData();
             if(!isFormValid){
@@ -239,7 +249,7 @@ function eventListeners(){
     // update an task item
     viewBtns.addEventListener('click', (event) => {
         event.preventDefault();
-        // location.reload();
+        location.reload();
         if(event.target.id === "update-btn"){
             let id = event.target.dataset.id;
             let isFormValid = getFormData();
@@ -272,6 +282,8 @@ function getFormData(){
         return  false;
     } else {
         taskName = form.task_name.value;
+        taskDescription =form.task_description.value;
+        labels =form.labels.value;
     }
     return true;
 }
