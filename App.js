@@ -21,20 +21,23 @@ const alltask = document.querySelector('#all-task');
 // -------------------------------------------------- //
 
 let  taskName = taskDescription = labels = null;
+// let taskId = new Date().getTime();
 // localStorage.clear();// temporary for checking
 // Task class
+// localStorage.clear();
 class Task{
     
-    constructor(id, taskName, taskDescription,labels){
-        this.id = id;
+    constructor(taskId, taskName, taskDescription,labels){
+        this.taskId = taskId;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.labels = labels;
     }
+    
 
     static getTasks(){
         let tasks;
-        if(localStorage.getItem('tasks') == null){
+        if(localStorage.getItem('tasks') == null || localStorage.getItem('tasks') == ""){
             tasks = [];
         } else {
             tasks = JSON.parse(localStorage.getItem('tasks'));
@@ -50,10 +53,10 @@ class Task{
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
-    static deleteTask(id){
+    static deleteTask(taskId){
         const tasks = Task.getTasks();
         tasks.forEach((task, index) => {
-            if(task.id == id){
+            if(task.taskId == taskId){
                 tasks.splice(index, 1);
                 
             }
@@ -61,23 +64,24 @@ class Task{
         localStorage.setItem('tasks', JSON.stringify(tasks));
         form.reset();
         UI.closeviewUpper();
-        taskBookList.innerHTML = "";    //to be change taskbooklist
+        //taskBookList.innerHTML = "";    //to be change taskbooklist
         UI.showTaskList();
     }
 
     static updateTask(item){
         const tasks = Task.getTasks();
         tasks.forEach(task => {
-            if(task.id == item.id){
+            if(task.taskId == item.taskId){
                 task.taskName = item.taskName;
                 task.taskDescription = item.taskDescription;
                 task.labels = item.labels;
                 
+                task.taskId = new Date().getTime()
             }
         });
         localStorage.setItem('tasks', JSON.stringify(tasks));
-        alltask.innerHTML = "";
-        UI.showTaskList();
+        // alltask.innerHTML = "";
+        // UI.showTaskList();
     }
 }
 
@@ -88,33 +92,54 @@ class UI{
         tasks.forEach(task => UI.addToTaskList(task));
         const notes = document.querySelectorAll('.note');
         const fourconts = document.querySelectorAll('.four-section');  //containers
-        let selcon = "open";    //selectcontainer in four section
+         let selcon = "open";    //selectcontainer in four section
         notes.forEach(ele => {
-                ele.addEventListener('dragstart' , ()=>{
-                    ele.classList.add("drag")
-                })
-                ele.addEventListener('dragend' , ()=>{
-                    location.reload();
-                    ele.classList.remove("drag");
-                    let newTaskName , newTaskDescription;
-                    tasks.forEach(e => {
-                        if(e.id == ele.dataset.id){
-                            newTaskName = e.taskName;
-                            newTaskDescription = e.taskDescription;
-                        }
-                    })
-                     const taskItem = new Task(ele.dataset.id, newTaskName, newTaskDescription , selcon);
-                     Task.updateTask(taskItem);
-                    
-                })
-                fourconts.forEach(ele => {
-                    ele.addEventListener('dragover' , () => {
-                        const tarCon = document.querySelector('.drag');
-                        ele.appendChild(tarCon);
-                        selcon = ele.className;
-                    })
+            let eventofstart ="";
+            ele.addEventListener('dragstart' , (eventofsta)=>{
+                ele.classList.add("drag")
+                eventofstart =eventofsta
+                console.log(eventofsta.target)
             })
+            ele.addEventListener('dragend' , (event)=>{
+                // location.reload();
+                ele.classList.remove("drag");
+                // If(event.target.id == e.NewLabels) {
+                //     NewLabels="open";
+                // } else if (event.target.id == progress) {
+                //     NewLabels = "progress"
+                // } else if (event.target.id== review) {
+                //     NewLabels ="review"
+                // } else {
+                //     NewLabels ="done";
+                // }
+                console.log(event);
+                let newTaskName , newTaskDescription;
+                tasks.forEach(e => {
+                    console.log(e.taskId);
+                    if(e.taskId == ele.taskId){
+                        newTaskName = e.taskName;
+                        newTaskDescription = e.taskDescription;
+                        const taskItem = new Task(ele.taskId, newTaskName, newTaskDescription , selcon);
+                        Task.updateTask(taskItem);
+                        // Task.deleteTask();
+                        location.reload();
+                    }
+                })
+                
+                // const taskItem = new Task(ele.taskId, newTaskName, newTaskDescription , selcon);
+                
+                // Task.updateTask(taskItem);
+                //  Task.deleteTask(event.target.data-id);
+                
+            })
+            fourconts.forEach(ele => {
+                ele.addEventListener('dragover' , () => {
+                    const tarCon = document.querySelector('.drag');
+                    ele.appendChild(tarCon);
+                    selcon = ele.className;
+                })
         })
+    })
     }
 
     static addToTaskList(task){
@@ -122,19 +147,15 @@ class UI{
         // let data=localStorage.getItem("tasks");
         // console.log(data);
         const tableRow = document.createElement('section');
-        tableRow.setAttribute('data-id', task.id);
-        tableRow.innerHTML = `
-        <section id="note-wrapper">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
-            <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-        </svg>
-        <section class="note" id="note" data-id=${task.id} draggable="true" > 
+        tableRow.setAttribute('data-id', task.taskId);
+        tableRow.innerHTML = `<section >
+        <section class="note" id="note" data-id=${task.taskId} draggable="true" > 
         <p><span class = "task-name">${task.taskName}</span></p>
        </section>
        </section>
         `;
         if(task.labels === "open"){
-            document.querySelector('.open-box').appendChild(tableRow);
+            document.getElementById("open-box").appendChild(tableRow);
         }else if(task.labels === "progress"){
             document.querySelector('.progress-box').appendChild(tableRow);
         }else if(task.labels === "review"){
@@ -147,19 +168,19 @@ class UI{
 
     }
 
-    static showViewUpperData(id){
+    static showViewUpperData(taskId){
         const tasks = Task.getTasks();
         tasks.forEach(task => {
             // console.log(task)
-            if(task.id == id){
+            if(task.taskId == taskId){
                 form.task_name.value = task.taskName;       //title view upper
                 form.task_description.value = task.taskDescription;
                 form.labels.value = task.labels;
                 document.getElementById('view-title').innerHTML = "Change Task Details";
 
                 document.getElementById('view-btns').innerHTML = `
-                    <button type = "submit" id = "update-btn" data-id = "${id}">Update </button>
-                    <button type = "button" id = "delete-btn" data-id = "${id}">Delete </button>
+                    <button type = "submit" id = "update-btn" data-id = "${taskId}">Update </button>
+                    <button type = "button" id = "delete-btn" data-id = "${taskId}">Delete </button>
                 `;
             }
         });
@@ -181,7 +202,6 @@ class UI{
 
 // DOM Content Loaded
 window.addEventListener('DOMContentLoaded', () => {
-    //loadJSON(); // loading task list from json file       171 262
     eventListeners();
     UI.showTaskList();
 });
@@ -191,6 +211,10 @@ function eventListeners(){
     // show add item viewUpper
     addBtn.addEventListener('click', () => {
         form.reset();
+        document.getElementById("view-btns").innerHTML =
+        `<button type="submit" id="submit-btn">Submit</button>`
+        ;
+        document.getElementById("view-title").innerText ="Add Task";
         
         UI.showViewUpper();
     });
@@ -235,23 +259,27 @@ function eventListeners(){
         if(event.target.parentElement.tagName == "SECTION"){
             trElement = event.target.parentElement;
         }
-        let viewID = trElement.dataset.id;
+        let viewID = trElement.taskId;
         UI.showViewUpperData(viewID);
     });
 
     // delete an task item
     viewBtns.addEventListener('click', (event) => {
         if(event.target.id == 'delete-btn'){
-            Task.deleteTask(event.target.dataset.id);
+            Task.deleteTask(event.target.data-id);
         }
     });
 
     // update an task item
     viewBtns.addEventListener('click', (event) => {
         event.preventDefault();
-        location.reload();
+        // location.reload();
         if(event.target.id === "update-btn"){
-            let id = event.target.dataset.id;
+            console.log(event)
+            let taskName=form.task_name.value
+            let taskDescription = form.task_description.value ;
+            let lables =    form.labels.value ;
+            let taskId = new Date().getTime();
             let isFormValid = getFormData();
             if(!isFormValid){
                 form.querySelectorAll('input').forEach(input => {
@@ -260,15 +288,25 @@ function eventListeners(){
                     }, 1500);
                 });
             } else {
-                const taskItem = new Task(id, taskName, taskDescription, labels);
+                const taskItem = new Task(taskId, taskName, taskDescription, labels);
                 Task.updateTask(taskItem);
+                // Task.deleteTask(taskId);
                 UI.closeviewUpper();
                 form.reset();
             }
         }
-        
+        if(event.target.id == 'delete-btn'){
+            console.log(event.target.dataset.taskId);
+            Task.deleteTask(event.target.dataset.taskId);
+        }
+        document.getElementById("view-btns").innerHTML =
+        `<button type="submit" id="submit-btn">Submit</button>`
+        ;
+        document.getElementById("view-title").innerText ="Add Task";
+        location.reload();
     });
 }
+
 
 
 
@@ -276,7 +314,6 @@ function eventListeners(){
 // get form data
 function getFormData(){
 
-    // if(!strRegex.test(form.task_name.value) || form.task_name.value.trim().length == 0){
         if( form.task_name.value.trim().length == 0){ 
         addErrMsg(form.task_name);
         return  false;
@@ -292,4 +329,3 @@ function getFormData(){
 function addErrMsg(inputBox){
     alert(`Plz Enter ${inputBox}`);
 }
-
