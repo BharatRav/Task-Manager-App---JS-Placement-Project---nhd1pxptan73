@@ -205,6 +205,7 @@ function drop(ev) {
 
 function EditTask(event) {
   event.preventDefault();
+  event.stopPropagation()
   viewUpper.style.display = "block";
   updateButton.style.display = "block";
   submitButton.style.display="none";
@@ -274,4 +275,13 @@ function renderList(parentId, data) {
    });
  }
 
-ShowAllTask();
+function addNewTask(event) {
+    event.preventDefault();
+  viewUpper.style.display = "block";
+  submitButton.style.display = "block";
+  updateButton.style.display="none";
+  document.getElementById("view-title").innerText ="Add Task";
+}
+
+
+ ShowAllTask();
