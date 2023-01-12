@@ -34,7 +34,8 @@ addButton.addEventListener("click", (event) => {
   event.preventDefault();
   viewUpper.style.display = "block";
   submitButton.style.display = "block";
-  updateButton.style.display="none"
+  updateButton.style.display="none";
+  document.getElementById("view-title").innerText ="Add Task";
 // document.getElementById('view-btns').innerHTML = `
 //         <button type="submit" id="submit-btn" >Submit</button>
 //     `;
@@ -55,6 +56,7 @@ closeButton.addEventListener("click", (event) => {
     
   viewUpper.style.display = "none";
     closeviewUpper();
+    document.getElementById("view-title").innerText ="Add Task";
     
 });
 
@@ -208,6 +210,7 @@ function EditTask(event) {
   submitButton.style.display="none";
   EDIT_ELEMENT = event.target;
   formValue(event);
+  document.getElementById("view-title").innerText ="Update Task";
 }
 
 updateButton.addEventListener("click", (event) => {
