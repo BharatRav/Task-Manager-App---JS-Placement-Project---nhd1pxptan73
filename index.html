@@ -107,22 +107,22 @@
         <section  class="task-container" id="task-container" >
             <!-- App should have 4 sections "open", "In Progress", "In Review", "Done" -->
             <!-- first -->
-            <section class="container four-section open-box" id="open-box">
+            <section class="container four-section open-box" id="open-box" onclick="addNewTask(event)">
                 <h2>Open</h2>
                 <ul id="open" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
             </section>
             <!-- second -->
-            <section class="container four-section progress-box" id="progress-box">
+            <section class="container four-section progress-box" id="progress-box" onclick="addNewTask(event)">
                 <h2>In Progress</h2>
                 <ul id="progress" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
             </section>
             <!-- third -->
-            <section class="container four-section review-box" id="review-box">
+            <section class="container four-section review-box" id="review-box" onclick="addNewTask(event)">
                 <h2>In Review</h2>
                 <ul id="review" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
             </section>
             <!-- fourth -->
-            <section class="container four-section done-box" id="done-box">
+            <section class="container four-section done-box" id="done-box" onclick="addNewTask(event)">
                 <h2>Done</h2>
                 <ul id="done" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
             </section>
