@@ -62,8 +62,8 @@ closeButton.addEventListener("click", (event) => {
 
 submitButton.addEventListener("click", (event) => {
    event.preventDefault();
-   console.log(event);
-   console.log("hi");
+   //console.log(event);
+   //console.log("hi");
 
    const name = document.getElementById("title-data").value;
    const description = document.getElementById("description-data").value;
