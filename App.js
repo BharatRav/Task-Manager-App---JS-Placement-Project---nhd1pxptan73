@@ -81,6 +81,12 @@ submitButton.addEventListener("click", (event) => {
    taskItem.setAttribute("draggable", "true");
    taskItem.setAttribute("ondragstart", "drag(event)");
    taskItem.setAttribute("onclick", "EditTask(event)");
+   
+   if(localStorage.getItem("tasks")===null || localStorage.getItem("tasks")==="") {
+  localStorage.setItem("tasks",allTasks);
+}
+   
+   //here i added extra line 
 
   switch (taskLabel) {
     case "open":
