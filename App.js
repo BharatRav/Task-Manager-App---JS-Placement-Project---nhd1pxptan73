@@ -18,6 +18,7 @@ const formTitle = document.querySelector("#title-data");
 const formDesc = document.querySelector("#description-data");
 const formLabels = document.querySelector("#labels-data");
 
+localStorage.clear();
 let EDIT_ELEMENT = null;
 
 let source = "";
