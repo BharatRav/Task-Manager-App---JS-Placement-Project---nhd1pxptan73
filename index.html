@@ -16,7 +16,6 @@
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-</head>
 
 <body>
     <!-- <section ondragstart="dragstart()" onclick="updateTask()"></section> -->
@@ -30,19 +29,18 @@
                 <button type="button" id="close-btn">
                     <i class="fas fa-times"></i>
                 </button>
-
             </section>
 
+            <span id="errorMsg"></span>
 
-            <section class="view-main">
-                
+
+            <section class="view-main"> 
                 <section class="view-row">
                     <section class="view-column">
                         <label for="title-data">Title:</label>
                         <input type="text" placeholder="Enter title" class="form-data" id="title-data" name="task_name">
                     </section>
                 </section>
-
 
                 <section class="view-row grid-row">
                     <section class="view-column">
@@ -51,7 +49,6 @@
                         cols="40" rows="10" style="resize: none;"></textarea>
                     </section>
                 </section>
-
 
                 <section class="view-row">
                     <section class="view-column">
@@ -65,10 +62,15 @@
                     </section>
                 </section>
 
-
                 <section class="view-row" id="view-btns">
-                    <button type="submit" id="submit-btn">Submit</button>
+                    <button type="submit" id="submit-btn" >Submit</button>
+                    <button type="submit" class="update-btn" id="update-btn" style="display: none;" >Update</button>
+                    <button type="submit" class="delete-btn" id="delete-btn" style="display: none;" >Delete</button>
                 </section>
+                <!-- <section class="view-row " id="view-btns">
+                    <button type="submit" class="update-btn" id="update-btn" style="display: none;">Update</button>
+                    <button type="submit" class="delete-btn" id="delete-btn" style="display: none;">Delete</button>
+                </section> -->
 
             </section>
 
@@ -77,10 +79,10 @@
     <!-- -------------------------------------------------- -->
 
     <!-- four section of taskbook  -->
-    <section class="view-lower" id="view-lower">
-        <section class="task-content">
-            <section class="task-head">
-                
+    <section class="big-container">
+        <section class="heading-and-add-button-container">
+            <section class="heading-container">
+            
                 <!-- scalable vector graphics -->
 
                 <!-- https://icons.getbootstrap.com/icons/list-stars/ -->
@@ -92,9 +94,7 @@
                   <h2>Task <span>Manager</span></h2>
             </section>
 
-
-
-            <section class="task-main-top">
+            <section class="add-button-container">
                 <button type="button" class="btn" id="add-btn">
                     <span>
                         <i class="fas fa-plus"></i>
@@ -102,28 +102,36 @@
                     </span>
                 </button>
             </section>
-
-            <section class="all-task" id="all-task">
-                <section class="stages" >
-                    <!-- App should have 4 sections "open", "In Progress", "In Review", "Done" -->
-                    <!-- first -->
-                    <section class="container four-section open-box" id="open-box">Open</section>
-                    <!-- second -->
-                    <section class="container four-section progress-box" id="progress-box">In Progress</section>
-                    <!-- third -->
-                    <section class="container four-section review-box" id="review-box">In Review</section>
-                    <!-- fourth -->
-                    <section class="container four-section done-box" id="done-box">Done</section>
-                    
-                </section>
+        </section>
+        
+        <section  class="task-container" id="task-container" >
+            <!-- App should have 4 sections "open", "In Progress", "In Review", "Done" -->
+            <!-- first -->
+            <section class="container four-section open-box" id="open-box">
+                <h2>Open</h2>
+                <ul id="open" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
             </section>
-
+            <!-- second -->
+            <section class="container four-section progress-box" id="progress-box">
+                <h2>In Progress</h2>
+                <ul id="progress" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+            </section>
+            <!-- third -->
+            <section class="container four-section review-box" id="review-box">
+                <h2>In Review</h2>
+                <ul id="review" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+            </section>
+            <!-- fourth -->
+            <section class="container four-section done-box" id="done-box">
+                <h2>Done</h2>
+                <ul id="done" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+            </section>
+            
         </section>
     </section>
-    <!-- -------------------------------------------------- -->
     <script src="./App.js"></script>
-    <!-- <script src="./guthubjs.js"></script> -->
-    <!-- <script src="./newjsman.js"></script> -->
 </body>
 
 </html>
+
+<!-- ye mera naya code h -->
