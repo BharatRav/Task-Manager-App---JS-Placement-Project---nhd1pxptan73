@@ -277,6 +277,8 @@ function renderList(parentId, data) {
 
 function addNewTask(event) {
     event.preventDefault();
+    // console.log(event.target.id);
+    form.labels.value = event.target.id;
   viewUpper.style.display = "block";
   submitButton.style.display = "block";
   updateButton.style.display="none";
