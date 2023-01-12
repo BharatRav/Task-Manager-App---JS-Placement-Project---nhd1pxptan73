@@ -283,6 +283,9 @@ function addNewTask(event) {
   submitButton.style.display = "block";
   updateButton.style.display="none";
   document.getElementById("view-title").innerText ="Add Task";
+   formTitle.value = "";
+  formDesc.value = "";
+  
 }
 
 
