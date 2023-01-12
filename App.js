@@ -82,9 +82,10 @@ submitButton.addEventListener("click", (event) => {
    taskItem.setAttribute("ondragstart", "drag(event)");
    taskItem.setAttribute("onclick", "EditTask(event)");
    
-   if(localStorage.getItem("tasks")===null || localStorage.getItem("tasks")==="") {
-  localStorage.setItem("tasks",allTasks);
-}
+//    if(localStorage.getItem("tasks")===null || localStorage.getItem("tasks")==="") {
+//   localStorage.setItem("tasks",allTasks);
+// }
+   saveData();
    
    //here i added extra line 
 
