@@ -41,6 +41,10 @@ addButton.addEventListener("click", (event) => {
 //         <button type="submit" id="submit-btn" >Submit</button>
 //     `;
 //     submitButton = document.getElementById("submit-btn");
+   form.task_name.value = ""; 
+    form.task_description.value = "";
+    form.labels.value = "open";
+    error.innerText = "";
 });
 
 function closeviewUpper(){
